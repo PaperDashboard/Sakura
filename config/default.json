@@ -15,6 +15,7 @@
         "method": "SHADOWSOCKS_METHOD"
     },
     "user": {
-        "initTraffic": "USER_INIT_TRAFFIC"
+        "initTraffic": "USER_INIT_TRAFFIC",
+        "keyExpire": "USER_KEY_EXPIRE"
     }
 }

@@ -1,6 +1,8 @@
 import { Document } from "mongoose"
 import * as nanoid from 'nanoid'
 import { isNull } from "util";
+import { Redis } from "ioredis";
+import { IConfig } from "config";
 
 class SessionService {
     private context = null;
@@ -9,8 +11,13 @@ class SessionService {
     }
 
     public async create(userId): Promise<string> {
-        const uid: string = nanoid()
+        const uid: string = nanoid(),
+            config: IConfig = this.context.config,
+            expireTime: number = config.get("user.keyExpire")
+
         await this.context.db.redis.set(uid, userId)
+
+        await this.context.db.redis.expire(uid, expireTime)
         return uid
     }
 

@@ -7,18 +7,21 @@ export default {
         const { email, password, username, code } = req.body;
         if (!EMAIL_REGEX.test(email)) {
             return res.status(403).json({
+                "status": "error",
                 "error": "email address is invalid"
             });
         }
 
         if (username.length <= 3) {
             return res.status(403).json({
+                "status": "error",
                 "error": "username is too short"
             })
         }
 
         if (password.length <= 6) {
             return res.status(403).json({
+                "status": "error",
                 "error": "password is too short"
             })
         }
@@ -26,12 +29,14 @@ export default {
         const codeItem = await req.service.invite.getByCode(code)
         if (isNull(codeItem)) {
             return res.status(401).json({
+                "status": "error",
                 "error": "Invalid invite code"
             })
         }
 
         if (codeItem.used) {
             return res.status(403).json({
+                "status": "error",
                 "error": "Invite code is used"
             })
         }
@@ -40,11 +45,13 @@ export default {
         } catch (error) {
             if (!isUndefined(error.name) && error.name === 'ValidationError') {
                 return res.status(409).json({
+                    "status": "error",
                     "error": "DuplicateKey",
                     "message": error.errors
                 })
             }
             return res.status(400).json({
+                "status": "error",
                 "error": error.message
             })
         }

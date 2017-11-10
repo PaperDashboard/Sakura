@@ -57,12 +57,16 @@ class UserService {
         return await bcrypt.hash(password, SALT_ROUNDS)
     }
 
-    public async login(email, password): Promise<boolean> {
+    public async login(email, password): Promise<Document> {
         const user: Document = await this.getUserByMail(email)
         if (isNull(user)) {
-            return false
+            throw new Error("User login failure")
         }
-        return await bcrypt.compare(password, user["password"])
+        const isLogin = await bcrypt.compare(password, user["password"])
+        if (!isLogin) {
+            throw new Error("User login failure")
+        }
+        return user
     }
 
     public async register(user): Promise<Document> {
