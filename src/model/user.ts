@@ -1,7 +1,8 @@
 import { Mongoose } from "mongoose";
+import * as mongoose from 'mongoose'
 
-export default function(mongoose: Mongoose) {
-    const userSchema = new mongoose.Schema({
+class UserModel {
+    private static userSchema = new mongoose.Schema({
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         email: { type: String, required: true, unique: true },
@@ -17,5 +18,9 @@ export default function(mongoose: Mongoose) {
         produce: Array,
     })
 
-    return mongoose.model('Users', userSchema);
+    getModel() {
+        return mongoose.model('Users', UserModel.userSchema);
+    }
 }
+
+export default new UserModel()

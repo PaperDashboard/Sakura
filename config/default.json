@@ -1,3 +1,6 @@
 {
-    "salt": "APP_SALT"
+    "salt": "APP_SALT",
+    "mongo": {
+        "url": "MONGODB_URI"
+    }
 }

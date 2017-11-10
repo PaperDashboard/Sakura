@@ -1,3 +1,6 @@
 {
-    "salt": "ChangeMe"
+    "salt": "ChangeMe",
+    "mongo": {
+        "url": "mongodb://192.168.60.128/sakura"
+    }
 }

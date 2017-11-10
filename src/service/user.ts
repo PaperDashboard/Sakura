@@ -1,7 +1,11 @@
 class UserService {
+    private context = null;
+    constructor(context) {
+        this.context = context
+    }
     public sayHello() {
         return "Hello, World"
     }
 }
 
-export default new UserService()
+export default UserService
