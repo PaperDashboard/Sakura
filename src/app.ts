@@ -4,6 +4,7 @@ import * as express from 'express'
 import * as logger from 'morgan'
 import service from './utils/service'
 import router from './router'
+import config from './config'
 
 class App {
     public express: express.Application;
@@ -21,6 +22,20 @@ class App {
         this.express.use(cookieParser())
         this.express.use(bodyParser.json())
         this.express.use(bodyParser.urlencoded({ extended: false }))
+
+        /**
+         *
+         * Custom middleware load stage
+         * stage0 -> Load config
+         * stage1 -> Init database
+         * stage2 -> Load model
+         * stage3 -> Load service
+         *
+         */
+        this.express.use(function (req, res, next) {
+            Object.assign(req, { config })
+            next();
+        })
         this.express.use(service)
     }
 
