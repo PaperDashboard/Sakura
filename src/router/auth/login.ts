@@ -8,7 +8,7 @@ export default {
                 "status": "suceess",
                 "token": userToken
             })
-        } catch (error: Error) {
+        } catch (error) {
             return res.status(401).json({
                 "status": "error",
                 "error": error.message

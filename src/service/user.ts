@@ -53,6 +53,11 @@ class UserService {
         })
     }
 
+    public async getFromToken(userToken: string): Promise<Document> {
+        const id = await this.context.service.session.get(userToken)
+        return await this.getUserById(id)
+    }
+
     public async getPassword(password: string): Promise<string> {
         return await bcrypt.hash(password, SALT_ROUNDS)
     }

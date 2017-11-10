@@ -6,6 +6,7 @@ import service from './middleware/service'
 import model from './middleware/model'
 import redis from './middleware/redis'
 import mongo from './middleware/mongo'
+import user from './middleware/user'
 import router from './router'
 import config from './config'
 
@@ -33,6 +34,7 @@ class App {
          * stage1 -> Init database
          * stage2 -> Load model
          * stage3 -> Load service
+         * stage4 -> Fetch user (if set X-User-Token)
          *
          */
         this.express.use(function (req, res, next) {
@@ -45,6 +47,7 @@ class App {
         this.express.use(model)
 
         this.express.use(service)
+        this.express.use(user)
     }
 
     private router(): void {
