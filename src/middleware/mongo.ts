@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose'
 import { IConfig } from 'config';
 
 function loadMongo(req, res, next) {
-    const config: IConfig = req.config;
+    const config: IConfig = req.config
     mongoose.connect(config.get("mongo.url"), {
         useMongoClient: true
     })

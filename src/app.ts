@@ -2,9 +2,10 @@ import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
 import * as express from 'express'
 import * as logger from 'morgan'
-import service from './utils/service'
-import model from './utils/model'
-import mongo from './utils/mongo'
+import service from './middleware/service'
+import model from './middleware/model'
+import redis from './middleware/redis'
+import mongo from './middleware/mongo'
 import router from './router'
 import config from './config'
 
@@ -38,7 +39,9 @@ class App {
             Object.assign(req, { config })
             next();
         })
+
         this.express.use(mongo)
+        this.express.use(redis)
         this.express.use(model)
 
         this.express.use(service)
