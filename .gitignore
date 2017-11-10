@@ -1,0 +1,9 @@
+# ignore dist files
+dist/
+node_modules/
+
+# ignore IDE files
+.vscode/
+
+# error files
+yarn-error.log
