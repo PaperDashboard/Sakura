@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@types/ioredis": "^0.0.27",
+        "@types/uuid": "^3.4.3",
         "bcrypt": "^1.0.3",
         "body-parser": "^1.18.2",
         "co-router": "^1.0.5",
@@ -22,8 +23,10 @@
         "ioredis": "^3.2.1",
         "mocha": "^4.0.1",
         "mongoose": "^4.13.1",
+        "mongoose-unique-validator": "^1.0.6",
         "morgan": "^1.9.0",
-        "nanoid": "^1.0.1"
+        "nanoid": "^1.0.1",
+        "uuid": "^3.1.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^1.0.0",

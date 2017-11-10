@@ -1,5 +1,6 @@
 import { Mongoose } from "mongoose";
 import * as mongoose from 'mongoose'
+import * as uniqueValidator from 'mongoose-unique-validator'
 
 class UserModel {
     private static userSchema = new mongoose.Schema({
@@ -19,6 +20,7 @@ class UserModel {
     })
 
     getModel() {
+        UserModel.userSchema.plugin(uniqueValidator)
         return mongoose.model('Users', UserModel.userSchema);
     }
 }

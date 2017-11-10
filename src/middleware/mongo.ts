@@ -4,7 +4,8 @@ import { IConfig } from 'config';
 function loadMongo(req, res, next) {
     const config: IConfig = req.config
     mongoose.connect(config.get("mongo.url"), {
-        useMongoClient: true
+        useMongoClient: true,
+        promiseLibrary: global.Promise
     })
     const mongo = mongoose.connection
 

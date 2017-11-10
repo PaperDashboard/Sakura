@@ -5,10 +5,11 @@ import { Router } from 'express';
 const router: Router = R()
 
 router.get("/", async (req: any, res, next) => {
-    const users = await req.model.user.find()
+    const users = await req.service.invite.getByCode("878f485e-7c95-48fd-b766-4deee38fae7b")
+    // console.log(req.service)
     res.send(users)
 })
 
-router.post("/auth", auth.default)
+router.use("/auth", auth.default)
 
 export default router
