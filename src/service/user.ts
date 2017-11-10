@@ -14,7 +14,7 @@ class UserService {
     }
 
     public async checkPort(port: number): Promise<boolean> {
-        const user = await this.context.model.findOne({ port })
+        const user = await this.context.model.user.findOne({ port })
         return isNull(user)
     }
 
@@ -28,8 +28,15 @@ class UserService {
             return Math.floor(Math.random() * (max - min)) + min
         }
 
+        const userNumber: number = await this.context.model.user.count({});
+
+        // if user is too much 😂
+        if (userNumber === (max - min)) {
+            throw new Error("Port poll is full");
+        }
+
         let port: number = getRamdonInt(min, max)
-        while (!this.checkPort(port)) {
+        while (!await this.checkPort(port)) {
             port =  getRamdonInt(min, max)
         }
 
@@ -62,7 +69,9 @@ class UserService {
         user.password = await this.getPassword(user.password)
         user.linkPassword = nanoid(8)
         user.port = await this.getEmptyPort()
-
+        const produce = await this.context.service.produce.getInitProduce()
+        console.log(produce)
+        user.produce = [ produce._id ]
         const u: Document = new this.context.model.user(user)
         await u.save()
         return u;

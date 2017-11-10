@@ -9,9 +9,12 @@
     },
     "shadowsocks": {
         "port": {
-            "begin": 10000,
-            "end": 30000
+            "begin": "SHADOWSOCKS_PORT_BEGIN",
+            "end": "SHADOWSOCKS_PORT_END"
         },
-        "method": "rc4-md5"
+        "method": "SHADOWSOCKS_METHOD"
+    },
+    "user": {
+        "initTraffic": "USER_INIT_TRAFFIC"
     }
 }

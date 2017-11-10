@@ -5,5 +5,15 @@
     "redis": {
         "host": "192.168.60.128",
         "port": 6379
+    },
+    "shadowsocks": {
+        "port": {
+            "begin": 10000,
+            "end": 30000
+        },
+        "method": "rc4-md5"
+    },
+    "user": {
+        "initTraffic": 10737418240
     }
 }
