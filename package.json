@@ -11,6 +11,7 @@
         "test": "mocha --report spec --require ts-node/register \"src/tests/*.test.ts\""
     },
     "dependencies": {
+        "@types/ioredis": "^0.0.27",
         "bcrypt": "^1.0.3",
         "body-parser": "^1.18.2",
         "co-router": "^1.0.5",
@@ -18,11 +19,11 @@
         "cookie-parser": "^1.4.3",
         "debug": "^3.1.0",
         "express": "^4.16.2",
+        "ioredis": "^3.2.1",
         "mocha": "^4.0.1",
         "mongoose": "^4.13.1",
         "morgan": "^1.9.0",
-        "nanoid": "^1.0.1",
-        "redis": "^2.8.0"
+        "nanoid": "^1.0.1"
     },
     "devDependencies": {
         "@types/bcrypt": "^1.0.0",
@@ -35,7 +36,6 @@
         "@types/mongoose": "^4.7.25",
         "@types/morgan": "^1.7.35",
         "@types/node": "^8.0.50",
-        "@types/redis": "^2.8.1",
         "async-file": "^2.0.2",
         "eslint": "^4.10.0",
         "gulp": "^3.9.1",

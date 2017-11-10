@@ -1,5 +1,5 @@
-import * as Router from 'co-router'
-
-const router = Router()
-
-export default router
+export default {
+    async post(req, res, next) {
+        res.status(204).send();
+    }
+}
