@@ -29,6 +29,10 @@ class SessionService {
             throw new Error("Not found token")
         }
     }
+
+    public async destory(token): Promise<void> {
+        await this.context.db.redis.del(token);
+    }
 }
 
 export default SessionService
