@@ -7,6 +7,7 @@ import model from './middleware/model'
 import redis from './middleware/redis'
 import mongo from './middleware/mongo'
 import user from './middleware/user'
+import cors from './middleware/cors'
 import router from './router'
 import config from './config'
 
@@ -37,6 +38,8 @@ class App {
          * stage4 -> Fetch user (if set X-User-Token)
          *
          */
+        this.express.use(cors)
+
         this.express.use(function (req, res, next) {
             Object.assign(req, { config })
             next();

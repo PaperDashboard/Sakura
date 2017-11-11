@@ -79,7 +79,6 @@ class UserService {
         user.linkPassword = nanoid(8)
         user.port = await this.getEmptyPort()
         const produce = await this.context.service.produce.getInitProduce()
-        console.log(produce)
         user.produce = [ produce._id ]
         const u: Document = new this.context.model.user(user)
         await u.save()
