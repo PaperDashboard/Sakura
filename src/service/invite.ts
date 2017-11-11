@@ -20,6 +20,13 @@ class InviteService {
         code.used = true
         await code.save()
     }
+
+    public async getPublicCode(): Promise<Array<Document>> {
+        return await this.context.model.invite.find({
+            owner: null,
+            used: false
+        })
+    }
 }
 
 export default InviteService
