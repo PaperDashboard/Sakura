@@ -22,7 +22,7 @@ class SessionService {
     }
 
     public async get(token): Promise<string> {
-        const ret = await this.context.db.redis.get()
+        const ret = await this.context.db.redis.get(token)
         if (!isNull(ret)) {
             return ret
         } else {

@@ -11,6 +11,8 @@ function getUser(req, res, next) {
                 "error": error.message
             })
         })
+    } else {
+        next()
     }
 }
 
