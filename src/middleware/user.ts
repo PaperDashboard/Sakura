@@ -1,8 +1,10 @@
 import { isUndefined } from "util";
 
+const URL_REGEX = /^\/auth\/(login|register)/;
+
 function getUser(req, res, next) {
     if (!isUndefined(req.headers["x-user-token"])
-        && (!req.path.startsWith("/auth/login"))) {
+        && (!URL_REGEX.test(req.path))) {
         req.service.user.getFromToken(req.headers["x-user-token"]).then(user => {
             req.user = user
             next()
