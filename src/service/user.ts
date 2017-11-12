@@ -114,6 +114,22 @@ class UserService {
         await user.save()
         return traffic
     }
+
+    public async getTrafficDetail(userId: string): Promise<Object> {
+        const user = await this.getById(userId);
+        const ret = {
+            used: 0,
+            free: 0
+        };
+
+        for (const element of user["produce"]) {
+            const produce = await this.context.service.produce.getById(element);
+            ret["used"] += produce.used,
+            ret["free"] += produce.traffic
+        }
+
+        return ret
+    }
 }
 
 export default UserService

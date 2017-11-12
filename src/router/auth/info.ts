@@ -7,8 +7,13 @@ export default {
                 status: "error",
                 error: "Unauthorized"
             })
-        } else {
-            return res.status(200).send(req.user);
         }
+        const traffic = await req.service.user.getTrafficDetail(req.user._id);
+
+        const user = { ...req.user._doc };
+        Object.assign(user, {
+            traffic
+        })
+        return res.status(200).send(user);
     }
 }
