@@ -1,5 +1,6 @@
 import * as R from 'co-router'
 import * as auth from './auth'
+import * as dashboard from './dashboard'
 import { Router } from 'express';
 
 const router: Router = R()
@@ -10,6 +11,7 @@ router.get("/", async (req: any, res, next) => {
     res.send(users)
 })
 
-router.use("/auth", auth.default)
+router.use('/auth', auth.default)
+router.use('/dashboard', dashboard.default)
 
 export default router

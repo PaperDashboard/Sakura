@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt'
 import { isNull } from "util"
 import * as nanoid from 'nanoid'
 import { IConfig } from "config";
+import { isToday } from '../utils/date';
 
 const SALT_ROUNDS = 10;
 
@@ -43,11 +44,11 @@ class UserService {
         return port;
     }
 
-    public async getUserById(userId): Promise<Document> {
+    public async getById(userId: string): Promise<Document> {
         return await this.context.model.user.findById(userId)
     }
 
-    public async getUserByMail(userMail): Promise<Document> {
+    public async getByMail(userMail: string): Promise<Document> {
         return this.context.model.user.findOne({
             "email": userMail
         })
@@ -55,15 +56,15 @@ class UserService {
 
     public async getFromToken(userToken: string): Promise<Document> {
         const id = await this.context.service.session.get(userToken)
-        return await this.getUserById(id)
+        return await this.getById(id)
     }
 
     public async getPassword(password: string): Promise<string> {
         return await bcrypt.hash(password, SALT_ROUNDS)
     }
 
-    public async login(email, password): Promise<Document> {
-        const user: Document = await this.getUserByMail(email)
+    public async login(email: string, password: string): Promise<Document> {
+        const user: Document = await this.getByMail(email)
         if (isNull(user)) {
             throw new Error("User login failure")
         }
@@ -74,15 +75,44 @@ class UserService {
         return user
     }
 
-    public async register(user): Promise<Document> {
-        user.password = await this.getPassword(user.password)
-        user.linkPassword = nanoid(8)
-        user.port = await this.getEmptyPort()
+    public async register(user: Object): Promise<Document> {
+        user["password"] = await this.getPassword(user["password"])
+        user["linkPassword"] = nanoid(8)
+        user["port"] = await this.getEmptyPort()
         const produce = await this.context.service.produce.getInitProduce()
-        user.produce = [ produce._id ]
+        user["produce"] = [ produce._id ]
         const u: Document = new this.context.model.user(user)
         await u.save()
         return u;
+    }
+
+    public async getDefaultProduce(userId: string): Promise<string> {
+        const user = await this.getById(userId)
+
+        return this.context.service.produce.findDeafultProduce(user["produce"])
+    }
+
+    public async signup(userId: string): Promise<number> {
+        const user = await this.getById(userId);
+        const config: IConfig = this.context.config
+
+        if (isToday(user["lastSignup"])) {
+            throw new Error('User is signuped today');
+        }
+
+        const max: number = config.get('user.signup.max'),
+            min: number = config.get('user.signup.min');
+
+        const traffic: number = Math.ceil(
+            Math.random() * (max - min)
+        ) + min;
+
+        const produceId = await this.getDefaultProduce(userId);
+        await this.context.service.produce.addTraffic(produceId, traffic);
+
+        user['lastSignup'] = new Date()
+        await user.save()
+        return traffic
     }
 }
 

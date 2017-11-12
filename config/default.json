@@ -16,6 +16,11 @@
     },
     "user": {
         "initTraffic": "USER_INIT_TRAFFIC",
-        "keyExpire": "USER_KEY_EXPIRE"
+        "keyExpire": "USER_KEY_EXPIRE",
+        "signup": {
+            "enabled": "SIGNUP_ENABLED",
+            "max": "SIGNUP_MAX",
+            "min": "SIGNUP_MIN"
+        }
     }
 }

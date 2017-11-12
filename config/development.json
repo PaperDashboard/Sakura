@@ -15,6 +15,11 @@
     },
     "user": {
         "initTraffic": 10737418240,
-        "keyExpire": 259200
+        "keyExpire": 259200,
+        "signup": {
+            "enabled": true,
+            "max": 1073741824,
+            "min": 134217728
+        }
     }
 }

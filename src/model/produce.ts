@@ -9,6 +9,7 @@ class ProduceModel {
         stage: { type: Number, required: true },
         enabled: { type: Boolean, default: true, required: true },
         cycle: { type: Number, default: -1 },
+        default: { type: Boolean, default: false, required: true }
     })
 
     getModel() {
