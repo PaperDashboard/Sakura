@@ -15,6 +15,8 @@ export default {
             const thisCode = await req.service.invite.createCodeForUser(req.user._id)
             codes.push(thisCode)
         }
+        req.user.inviteNumber = 0
+        await req.user.save()
         res.json({
             status: 'success',
             codes
