@@ -1,11 +1,11 @@
-import { isUndefined } from "util";
+import { isUndefined, isNull } from "util";
 
-const URL_REGEX = /^\/auth\/(login|register)/;
+const URL_REGEX = /^\/auth\/(login|register|code)/;
 
 function getUser(req, res, next) {
-    if (!isUndefined(req.headers["x-user-token"])
+    const reqKey = req.headers["x-user-token"]
+    if ((!isUndefined(reqKey)) && (!isNull(reqKey))
         && (!URL_REGEX.test(req.path))) {
-        const reqKey = req.headers["x-user-token"]
         req.service.user.getFromToken(reqKey).then(user => {
             req.user = user
             req.reqKey = reqKey

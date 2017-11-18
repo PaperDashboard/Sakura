@@ -6,9 +6,12 @@ import { Router } from 'express';
 const router: Router = R()
 
 router.get("/", async (req: any, res, next) => {
-    const users = await req.service.invite.getByCode("878f485e-7c95-48fd-b766-4deee38fae7b")
-    // console.log(req.service)
-    res.send(users)
+    res.json({
+        meta: {
+            version: '0.0.0-develop',
+            ping: true
+        }
+    })
 })
 
 router.use('/auth', auth.default)
