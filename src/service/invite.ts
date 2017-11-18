@@ -44,6 +44,10 @@ class InviteService {
         await doc.save()
         return doc
     }
+
+    public async createPublicCode(): Promise<Document> {
+        return await this.createCodeForUser(null)
+    }
 }
 
 export default InviteService

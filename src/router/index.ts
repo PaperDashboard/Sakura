@@ -6,6 +6,7 @@ import { Router } from 'express';
 const router: Router = R()
 
 router.get("/", async (req: any, res, next) => {
+    // await req.service.invite.createPublicCode()
     res.json({
         meta: {
             version: '0.0.0-develop',
