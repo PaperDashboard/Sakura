@@ -12,7 +12,8 @@ class NodeModel {
         enable: { type: Boolean, default: true },
         state: { type: Number, default: 0, required: true },
         detail: String,
-        port: Number
+        port: Number,
+        used: { type: Number, default: 0 }
     })
 
     getModel() {
