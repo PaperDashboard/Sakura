@@ -9,7 +9,7 @@
         "watch": "gulp watch",
         "dev": "nodemon --inspect dist/bin/run.js",
         "test": "mocha --report spec --require ts-node/register \"src/tests/*.test.ts\"",
-        "heroku-postbuild": "gulp scripts"
+        "heroku-postbuild": "npm install -g gulp && gulp scripts"
     },
     "dependencies": {
         "bcrypt": "^1.0.3",
