@@ -2,7 +2,7 @@ import { Mongoose } from "mongoose"
 import * as mongoose from 'mongoose'
 
 class ProduceModel {
-    private static userSchema = new mongoose.Schema({
+    private static produceSchema = new mongoose.Schema({
         traffic: { type: Number, defalut: 0, required: true },
         level: { type: Number, default: 0, required: true },
         used: { type: Number, defalut: 0, required: true },
@@ -13,7 +13,7 @@ class ProduceModel {
     })
 
     getModel() {
-        return mongoose.model('Produces', ProduceModel.userSchema);
+        return mongoose.model('Produces', ProduceModel.produceSchema);
     }
 }
 

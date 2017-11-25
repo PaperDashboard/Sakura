@@ -2,7 +2,7 @@ import { Mongoose } from "mongoose"
 import * as mongoose from 'mongoose'
 
 class InviteModel {
-    private static userSchema = new mongoose.Schema({
+    private static inviteSchema = new mongoose.Schema({
         code: { type: String, required: true, unique: true },
         used: { type: Boolean, required: true, default: false },
         date: { type: Date, required: true, default: Date.now },
@@ -10,7 +10,7 @@ class InviteModel {
     })
 
     getModel() {
-        return mongoose.model('Codes', InviteModel.userSchema);
+        return mongoose.model('Codes', InviteModel.inviteSchema);
     }
 }
 
