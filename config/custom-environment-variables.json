@@ -19,6 +19,7 @@
             "enabled": "SIGNUP_ENABLED",
             "max": "SIGNUP_MAX",
             "min": "SIGNUP_MIN"
-        }
+        },
+        "initInvite": "INIT_INVITE"
     }
 }

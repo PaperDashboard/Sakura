@@ -81,6 +81,7 @@ class UserService {
         user["port"] = await this.getEmptyPort()
         const produce = await this.context.service.produce.getInitProduce()
         user["produce"] = [ produce._id ]
+        user["inviteNumber"] = this.context.config.get('user.initInvite')
         const u: Document = new this.context.model.user(user)
         await u.save()
         return u;

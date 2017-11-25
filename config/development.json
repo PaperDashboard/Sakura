@@ -1,24 +1,3 @@
 {
-    "mongo": {
-        "url": "mongodb://192.168.60.128/sakura"
-    },
-    "redis": {
-        "url": "redis://192.168.60.128/"
-    },
-    "shadowsocks": {
-        "port": {
-            "begin": 10000,
-            "end": 30000
-        },
-        "method": "rc4-md5"
-    },
-    "user": {
-        "initTraffic": 10737418240,
-        "keyExpire": 259200,
-        "signup": {
-            "enabled": true,
-            "max": 1073741824,
-            "min": 134217728
-        }
-    }
+
 }
