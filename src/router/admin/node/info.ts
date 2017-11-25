@@ -18,5 +18,10 @@ export default {
                 error: e.message
             })
         }
+    },
+    async delete(req, res, next) {
+        const nodeId = req.params.id;
+        req.service.node.destory(nodeId);
+        res.status(204).send();
     }
 }

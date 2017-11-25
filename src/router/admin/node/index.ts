@@ -9,6 +9,8 @@ const router: Router = R()
 router.get('/list', list.default.get)
 router.get('/info/:id', info.default.get)
 
+router.delete('/:id', info.default.delete)
+
 router.post('/create', create.default.post)
 
 export default router

@@ -20,6 +20,12 @@ class ProduceService {
             _id: nodeId
         });
     }
+    public async destory(nodeId): Promise<void> {
+        const node = await this.findById(nodeId)
+        if (node) {
+            await node.remove();
+        }
+    }
 }
 
 export default ProduceService
