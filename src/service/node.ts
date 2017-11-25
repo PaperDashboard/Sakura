@@ -15,6 +15,11 @@ class ProduceService {
         await doc.save()
         return doc
     }
+    public async findById(nodeId): Promise<Document> {
+        return await this.context.model.node.findOne({
+            _id: nodeId
+        });
+    }
 }
 
 export default ProduceService
