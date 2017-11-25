@@ -3,8 +3,7 @@
         "url": "mongodb://192.168.60.128/sakura"
     },
     "redis": {
-        "host": "192.168.60.128",
-        "port": 6379
+        "url": "redis://192.168.60.128/"
     },
     "shadowsocks": {
         "port": {
