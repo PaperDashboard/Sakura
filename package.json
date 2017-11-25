@@ -8,7 +8,8 @@
         "start": "node dist/bin/run.js",
         "watch": "gulp watch",
         "dev": "nodemon --inspect dist/bin/run.js",
-        "test": "mocha --report spec --require ts-node/register \"src/tests/*.test.ts\""
+        "test": "mocha --report spec --require ts-node/register \"src/tests/*.test.ts\"",
+        "heroku-postbuild": "gulp scripts"
     },
     "dependencies": {
         "bcrypt": "^1.0.3",
