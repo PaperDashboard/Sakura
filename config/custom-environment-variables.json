@@ -1,0 +1,26 @@
+{
+    "mongo": {
+        "url": "MONGODB_URI"
+    },
+    "redis": {
+        "host": "REDIS_HOST",
+        "port": "REDIS_PORT",
+        "auth": "REDIS_AUTH"
+    },
+    "shadowsocks": {
+        "port": {
+            "begin": "SHADOWSOCKS_PORT_BEGIN",
+            "end": "SHADOWSOCKS_PORT_END"
+        },
+        "method": "SHADOWSOCKS_METHOD"
+    },
+    "user": {
+        "initTraffic": "USER_INIT_TRAFFIC",
+        "keyExpire": "USER_KEY_EXPIRE",
+        "signup": {
+            "enabled": "SIGNUP_ENABLED",
+            "max": "SIGNUP_MAX",
+            "min": "SIGNUP_MIN"
+        }
+    }
+}

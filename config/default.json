@@ -1,26 +1,25 @@
 {
     "mongo": {
-        "url": "MONGODB_URI"
+        "url": "mongodb://192.168.60.128/sakura"
     },
     "redis": {
-        "host": "REDIS_HOST",
-        "port": "REDIS_PORT",
-        "auth": "REDIS_AUTH"
+        "host": "192.168.60.128",
+        "port": 6379
     },
     "shadowsocks": {
         "port": {
-            "begin": "SHADOWSOCKS_PORT_BEGIN",
-            "end": "SHADOWSOCKS_PORT_END"
+            "begin": 10000,
+            "end": 30000
         },
-        "method": "SHADOWSOCKS_METHOD"
+        "method": "rc4-md5"
     },
     "user": {
-        "initTraffic": "USER_INIT_TRAFFIC",
-        "keyExpire": "USER_KEY_EXPIRE",
+        "initTraffic": 10737418240,
+        "keyExpire": 259200,
         "signup": {
-            "enabled": "SIGNUP_ENABLED",
-            "max": "SIGNUP_MAX",
-            "min": "SIGNUP_MIN"
+            "enabled": true,
+            "max": 1073741824,
+            "min": 134217728
         }
     }
 }
