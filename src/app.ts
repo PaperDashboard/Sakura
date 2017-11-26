@@ -10,6 +10,7 @@ import user from './middleware/user'
 import cors from './middleware/cors'
 import router from './router'
 import config from './config'
+import { HTTPError, makeError } from './utils/error';
 
 class App {
     public express: express.Application;
@@ -55,6 +56,20 @@ class App {
 
     private router(): void {
         this.express.use(router)
+        // Not found this router
+        this.express.use(function(req, res, next) {
+            next(makeError("Page Not found", 404));
+        })
+    }
+
+    private errorHandle(): void {
+        this.express.use(function(err: HTTPError, req, res, next) {
+            const status = err.status || 500;
+            res.status(status).json({
+                status: 'error',
+                error: err.message
+            })
+        })
     }
 }
 

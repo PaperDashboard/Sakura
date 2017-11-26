@@ -1,4 +1,5 @@
 import { isNull } from "util";
+import { makeError } from "../../../utils/error";
 
 export default {
     async get(req, res, next) {
@@ -6,22 +7,23 @@ export default {
         try {
             const node = await req.service.node.findById(nodeId);
             if (isNull(node)) {
-                throw new Error("Node is not found")
+                throw makeError("Node is not found", 404)
             }
             res.json({
                 status: 'success',
                 node
             })
         } catch (e) {
-            res.status(404).json({
-                status: 'error',
-                error: e.message
-            })
+            next(e)
         }
     },
     async delete(req, res, next) {
         const nodeId = req.params.id;
         req.service.node.destory(nodeId);
         res.status(204).send();
+    }
+    async put(req, res, next) {
+        const nodeId = req.params.id;
+
     }
 }

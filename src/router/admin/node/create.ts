@@ -1,3 +1,5 @@
+import { HTTPError } from "../../../utils/error";
+
 export default {
     async post(req, res, next) {
         try {
@@ -6,11 +8,9 @@ export default {
                 status: 'success',
                 node
             })
-        } catch (err) {
-            res.status(409).json({
-                status: 'error',
-                error: err.message
-            })
+        } catch (err: HTTPError) {
+            err.status = 409
+            next(err)
         }
     }
 }
