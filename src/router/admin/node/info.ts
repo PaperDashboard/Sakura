@@ -25,6 +25,6 @@ export default {
     async put(req, res, next) {
         const nodeId = req.params.id;
         await req.service.node.upadte(nodeId, req.body)
-        req.status(204).send();
+        res.status(204).send();
     }
 }
