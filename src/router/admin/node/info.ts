@@ -21,9 +21,10 @@ export default {
         const nodeId = req.params.id;
         req.service.node.destory(nodeId);
         res.status(204).send();
-    }
+    },
     async put(req, res, next) {
         const nodeId = req.params.id;
-
+        await req.service.node.upadte(nodeId, req.body)
+        req.status(204).send();
     }
 }
