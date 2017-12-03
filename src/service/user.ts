@@ -131,6 +131,31 @@ class UserService {
 
         return ret
     }
+
+    public async getProduceList(userId: string): Promise<Array<Document>> {
+        const user = await this.getById(userId);
+
+        const ret: Array<Document> = [];
+        for (const element of user["produce"]) {
+            const produce: Document = await this.context.service.produce.getById(element);
+            ret.push(produce);
+        }
+
+        return ret
+    }
+
+    public async getHighestLevel(userId: string): Promise<number> {
+        const list = await this.getProduceList(userId)
+        let max: number = 0
+
+        for (const element of list) {
+            if (element["level"] > max) {
+                max = element["level"]
+            }
+        }
+
+        return max
+    }
 }
 
 export default UserService

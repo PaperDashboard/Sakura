@@ -33,6 +33,16 @@ class ProduceService {
             await node.save()
         }
     }
+
+    public async getUserAvailAble(userId: string): Promise<Array<Document>> {
+        const level = this.context.user.getHighestLevel(userId)
+
+        return await this.context.mode.node.find({
+            level: {
+                $lte: level
+            }
+        })
+    }
 }
 
 export default ProduceService
