@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose'
 import config from '../config'
-import { setTimeout } from 'timers';
 class MongoServer {
     public static mongo: mongoose.Connection
     public static loaded: boolean
@@ -19,12 +18,6 @@ class MongoServer {
 }
 
 new MongoServer()
-
-async function asyncTimtout(time: number): Promise<void> {
-    setTimeout(() => {
-        return Promise.resolve()
-    }, time)
-}
 
 function loadMongo(req, res, next) {
     if (MongoServer.loaded) {
