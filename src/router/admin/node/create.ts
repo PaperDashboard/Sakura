@@ -8,7 +8,7 @@ export default {
                 status: 'success',
                 node
             })
-        } catch (err: HTTPError) {
+        } catch (err) {
             err.status = 409
             next(err)
         }

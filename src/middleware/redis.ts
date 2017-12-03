@@ -4,7 +4,7 @@ import * as redis from 'ioredis'
 import config from '../config'
 import { Redis } from "ioredis";
 
-class RedisServer{
+class RedisServer {
     public static redis: Redis
     constructor() {
         RedisServer.redis = new redis(config.get("redis.url"))
