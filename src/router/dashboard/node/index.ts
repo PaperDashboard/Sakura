@@ -4,6 +4,6 @@ import * as list from './list'
 
 const router: Router = R()
 
-router.use('/', list.default.get)
+router.get('/', list.default.get)
 
 export default router

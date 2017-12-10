@@ -35,9 +35,9 @@ class ProduceService {
     }
 
     public async getUserAvailAble(userId: string): Promise<Array<Document>> {
-        const level = this.context.user.getHighestLevel(userId)
+        const level = await this.context.service.user.getHighestLevel(userId)
 
-        return await this.context.mode.node.find({
+        return await this.context.model.node.find({
             level: {
                 $lte: level
             }
