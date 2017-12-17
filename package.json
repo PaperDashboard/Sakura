@@ -27,6 +27,7 @@
         "mongoose-unique-validator": "^1.0.6",
         "morgan": "^1.9.0",
         "nanoid": "^1.0.1",
+        "urlsafe-base64": "^1.0.0",
         "uuid": "^3.1.0"
     },
     "devDependencies": {
