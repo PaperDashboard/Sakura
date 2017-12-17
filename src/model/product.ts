@@ -1,8 +1,8 @@
 import { Mongoose } from "mongoose"
 import * as mongoose from 'mongoose'
 
-class ProduceModel {
-    private static produceSchema = new mongoose.Schema({
+class ProductModel {
+    private static productSchema = new mongoose.Schema({
         traffic: { type: Number, defalut: 0, required: true },
         level: { type: Number, default: 0, required: true },
         used: { type: Number, defalut: 0, required: true },
@@ -13,8 +13,8 @@ class ProduceModel {
     })
 
     getModel() {
-        return mongoose.model('Produces', ProduceModel.produceSchema);
+        return mongoose.model('Products', ProductModel.productSchema);
     }
 }
 
-export default new ProduceModel()
+export default new ProductModel()

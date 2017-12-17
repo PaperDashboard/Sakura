@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-class ProduceService {
+class NodeService {
     private context = null;
     constructor(context) {
         this.context = context
@@ -45,4 +45,4 @@ class ProduceService {
     }
 }
 
-export default ProduceService
+export default NodeService

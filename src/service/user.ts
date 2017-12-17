@@ -79,18 +79,18 @@ class UserService {
         user["password"] = await this.getPassword(user["password"])
         user["linkPassword"] = nanoid(8)
         user["port"] = await this.getEmptyPort()
-        const produce = await this.context.service.produce.getInitProduce()
-        user["produce"] = [ produce._id ]
+        const product = await this.context.service.product.getInitProduct()
+        user["product"] = [ product._id ]
         user["inviteNumber"] = this.context.config.get('user.initInvite')
         const u: Document = new this.context.model.user(user)
         await u.save()
         return u;
     }
 
-    public async getDefaultProduce(userId: string): Promise<string> {
+    public async getDefaultProduct(userId: string): Promise<string> {
         const user = await this.getById(userId)
 
-        return this.context.service.produce.findDeafultProduce(user["produce"])
+        return this.context.service.product.findDeafultProduct(user["product"])
     }
 
     public async signup(userId: string): Promise<number> {
@@ -108,8 +108,8 @@ class UserService {
             Math.random() * (max - min)
         ) + min;
 
-        const produceId = await this.getDefaultProduce(userId);
-        await this.context.service.produce.addTraffic(produceId, traffic);
+        const productId = await this.getDefaultProduct(userId);
+        await this.context.service.product.addTraffic(productId, traffic);
 
         user['lastSignup'] = new Date()
         await user.save()
@@ -123,29 +123,29 @@ class UserService {
             free: 0
         };
 
-        for (const element of user["produce"]) {
-            const produce = await this.context.service.produce.getById(element);
-            ret["used"] += produce.used,
-            ret["free"] += produce.traffic
+        for (const element of user["product"]) {
+            const product = await this.context.service.product.getById(element);
+            ret["used"] += product.used,
+            ret["free"] += product.traffic
         }
 
         return ret
     }
 
-    public async getProduceList(userId: string): Promise<Array<Document>> {
+    public async getProductList(userId: string): Promise<Array<Document>> {
         const user = await this.getById(userId);
 
         const ret: Array<Document> = [];
-        for (const element of user["produce"]) {
-            const produce: Document = await this.context.service.produce.getById(element);
-            ret.push(produce);
+        for (const element of user["product"]) {
+            const product: Document = await this.context.service.product.getById(element);
+            ret.push(product);
         }
 
         return ret
     }
 
     public async getHighestLevel(userId: string): Promise<number> {
-        const list = await this.getProduceList(userId)
+        const list = await this.getProductList(userId)
         let max: number = 0
 
         for (const element of list) {

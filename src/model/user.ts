@@ -16,7 +16,7 @@ class UserModel {
         port: { type: Number, required: true },
         linkPassword: { type: String, required: true },
         method: { type: String, required: true, default: 'rc4-md5' },
-        produce: Array,
+        product: Array,
     })
 
     getModel() {
