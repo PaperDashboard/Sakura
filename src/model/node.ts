@@ -2,6 +2,11 @@ import { Mongoose } from "mongoose"
 import * as mongoose from 'mongoose'
 
 class NodeModel {
+    public static KIND: Object = {
+        SHADOWSOCKS: 0x00,
+        ANYCONNECT: 0x01,
+    }
+
     private static nodeSchema = new mongoose.Schema({
         name: { type: String, required: true, unique: true },
         kind: { type: Number, required: true, default: 0 },
@@ -18,7 +23,9 @@ class NodeModel {
     })
 
     getModel() {
-        return mongoose.model('Nodes', NodeModel.nodeSchema);
+        const model: any = mongoose.model('Nodes', NodeModel.nodeSchema);
+        model.KIND_LIST = NodeModel.KIND;
+        return model
     }
 }
 

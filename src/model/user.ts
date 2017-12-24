@@ -16,6 +16,8 @@ class UserModel {
         port: { type: Number, required: true },
         linkPassword: { type: String, required: true },
         method: { type: String, required: true, default: 'rc4-md5' },
+        protocol: { type: String, required: true, default: 'auth_chain_a' },
+        obfs: { type: String, required: true, default: 'tls1.2_ticket_auth' },
         product: Array,
     })
 

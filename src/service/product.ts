@@ -7,7 +7,7 @@ class ProductService {
         this.context = context
     }
 
-    public async getById(productId): Promise<Document> {
+    public async findById(productId): Promise<Document> {
         return await this.context.model.product.findById(productId)
     }
 
@@ -27,14 +27,14 @@ class ProductService {
     }
 
     public async addTraffic(productId, traffic: number): Promise<void> {
-        const product = await this.getById(productId);
+        const product = await this.findById(productId);
         product["traffic"] += traffic;
         await product.save()
     }
 
     public async findDeafultProduct(productsId: Array<string>): Promise<string> {
         for (const productId of productsId) {
-            const product = await this.getById(productId);
+            const product = await this.findById(productId);
             if (product["default"]) {
                 return productId;
             }

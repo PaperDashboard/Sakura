@@ -21,5 +21,8 @@
             "min": "SIGNUP_MIN"
         },
         "initInvite": "INIT_INVITE"
+    },
+    "site": {
+        "name": "SITE_NAME"
     }
 }

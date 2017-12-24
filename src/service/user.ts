@@ -44,19 +44,19 @@ class UserService {
         return port;
     }
 
-    public async getById(userId: string): Promise<Document> {
+    public async findById(userId: string): Promise<Document> {
         return await this.context.model.user.findById(userId)
     }
 
-    public async getByMail(userMail: string): Promise<Document> {
+    public async findByMail(userMail: string): Promise<Document> {
         return this.context.model.user.findOne({
             "email": userMail
         })
     }
 
-    public async getFromToken(userToken: string): Promise<Document> {
+    public async findFromToken(userToken: string): Promise<Document> {
         const id = await this.context.service.session.get(userToken)
-        return await this.getById(id)
+        return await this.findById(id)
     }
 
     public async getPassword(password: string): Promise<string> {
@@ -64,7 +64,7 @@ class UserService {
     }
 
     public async login(email: string, password: string): Promise<Document> {
-        const user: Document = await this.getByMail(email)
+        const user: Document = await this.findByMail(email)
         if (isNull(user)) {
             throw new Error("User login failure")
         }
@@ -88,13 +88,13 @@ class UserService {
     }
 
     public async getDefaultProduct(userId: string): Promise<string> {
-        const user = await this.getById(userId)
+        const user = await this.findById(userId)
 
         return this.context.service.product.findDeafultProduct(user["product"])
     }
 
     public async signup(userId: string): Promise<number> {
-        const user = await this.getById(userId);
+        const user = await this.findById(userId);
         const config: IConfig = this.context.config
 
         if (isToday(user["lastSignup"])) {
@@ -117,14 +117,14 @@ class UserService {
     }
 
     public async getTrafficDetail(userId: string): Promise<Object> {
-        const user = await this.getById(userId);
+        const user = await this.findById(userId);
         const ret = {
             used: 0,
             free: 0
         };
 
         for (const element of user["product"]) {
-            const product = await this.context.service.product.getById(element);
+            const product = await this.context.service.product.findById(element);
             ret["used"] += product.used,
             ret["free"] += product.traffic
         }
@@ -133,11 +133,11 @@ class UserService {
     }
 
     public async getProductList(userId: string): Promise<Array<Document>> {
-        const user = await this.getById(userId);
+        const user = await this.findById(userId);
 
         const ret: Array<Document> = [];
         for (const element of user["product"]) {
-            const product: Document = await this.context.service.product.getById(element);
+            const product: Document = await this.context.service.product.findById(element);
             ret.push(product);
         }
 

@@ -7,7 +7,7 @@ class InviteService {
         this.context = context
     }
 
-    public async getById(codeId): Promise<Document> {
+    public async findById(codeId): Promise<Document> {
         return await this.context.model.invite.findById(codeId)
     }
 

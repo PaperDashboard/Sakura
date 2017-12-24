@@ -1,4 +1,6 @@
 import { Document } from "mongoose";
+import { getLink } from '../utils/shadowsocks';
+import { IConfig } from "config";
 
 class NodeService {
     private context = null;
@@ -32,6 +34,26 @@ class NodeService {
             Object.assign(node, infomation);
             await node.save()
         }
+    }
+
+    public async getLink(nodeId: string, userId: string): Promise<string> {
+        const node = await this.findById(nodeId);
+        const user = await this.context.service.user.findById(userId);
+        const config: IConfig = this.context.config;
+
+        if (this.context.model.node.KIND_LIST.SHADOWSOCKS === node['kind']) {
+            return getLink({
+                host: node['address'],
+                port: user.port,
+                password: user.linkPassword,
+                method: user.method,
+                protocol: user.protocol,
+                obfs: user.obfs,
+                remarks: node['name'],
+                group: config.get('site.name'),
+            });
+        }
+        return "Tigger kind node is not support link"
     }
 
     public async getUserAvailAble(userId: string): Promise<Array<Document>> {

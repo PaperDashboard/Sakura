@@ -21,5 +21,8 @@
             "min": 134217728
         },
         "initInvite": 5
+    },
+    "site": {
+        "name": "Sakura"
     }
 }
