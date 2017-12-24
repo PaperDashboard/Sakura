@@ -17,7 +17,9 @@ class InvoiceModel {
     })
 
     getModel() {
-        return mongoose.model('Invoice', InvoiceModel.invoiceSchema);
+        const m: any = mongoose.model('Invoice', InvoiceModel.invoiceSchema);
+        m.LIST_STATUS = InvoiceModel.STATUS;
+        return m;
     }
 }
 
