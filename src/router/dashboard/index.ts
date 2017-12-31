@@ -1,6 +1,6 @@
 import * as R from 'co-router'
 import * as signup from './signup'
-import * as invite from './invite'
+import * as invite from './account/invite'
 import * as node from './node'
 import { Router } from 'express'
 
