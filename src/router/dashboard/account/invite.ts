@@ -7,7 +7,6 @@ export default {
             status: 'success',
             codes
         })
-        console.log(codes)
     },
     async post(req, res, next) {
         const codes: Array<Document> = [];
