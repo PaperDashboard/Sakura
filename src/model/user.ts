@@ -1,6 +1,7 @@
 import { Mongoose } from "mongoose";
 import * as mongoose from 'mongoose'
 import * as uniqueValidator from 'mongoose-unique-validator'
+import config from '../config'
 
 class UserModel {
     private static userSchema = new mongoose.Schema({
@@ -15,9 +16,9 @@ class UserModel {
 
         port: { type: Number, required: true },
         linkPassword: { type: String, required: true },
-        method: { type: String, required: true, default: 'rc4-md5' },
-        protocol: { type: String, required: true, default: 'auth_chain_a' },
-        obfs: { type: String, required: true, default: 'tls1.2_ticket_auth' },
+        method: { type: String, required: true, default: config.get('shadowsocks.method') },
+        protocol: { type: String, required: true, default: config.get('shadowsocks.protocol') },
+        obfs: { type: String, required: true, default: config.get('shadowsocks.obfs') },
         product: Array,
     })
 

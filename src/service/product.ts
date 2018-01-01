@@ -20,7 +20,8 @@ class ProductService {
             level: 0,
             stage: 0,
             used: 0,
-            default: true
+            default: true,
+            name: "Default Product"
         })
         await product.save()
         return product

@@ -10,7 +10,9 @@
             "begin": 10000,
             "end": 30000
         },
-        "method": "rc4-md5"
+        "method": "rc4-md5",
+        "protocol": "origin",
+        "obfs": "plain"
     },
     "user": {
         "initTraffic": 10737418240,
@@ -20,7 +22,7 @@
             "max": 1073741824,
             "min": 134217728
         },
-        "initInvite": 5
+        "initInvite": 5,
     },
     "site": {
         "name": "Sakura"

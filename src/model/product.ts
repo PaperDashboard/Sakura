@@ -9,7 +9,8 @@ class ProductModel {
         stage: { type: Number, required: true },
         enabled: { type: Boolean, default: true, required: true },
         cycle: { type: Number, default: -1 },
-        default: { type: Boolean, default: false, required: true }
+        default: { type: Boolean, default: false, required: true },
+        name: { type: String, default: "", required: true }
     })
 
     getModel() {
