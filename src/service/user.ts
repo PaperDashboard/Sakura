@@ -156,6 +156,14 @@ class UserService {
 
         return max
     }
+
+    public async updateSettings(userId: string, settings: object): Promise<void> {
+        const user = await this.findById(userId);;
+        for (const item in settings) {
+            user[item] = settings[item]
+        }
+        await user.save()
+    }
 }
 
 export default UserService

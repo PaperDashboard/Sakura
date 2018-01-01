@@ -22,7 +22,7 @@
             "max": 1073741824,
             "min": 134217728
         },
-        "initInvite": 5,
+        "initInvite": 5
     },
     "site": {
         "name": "Sakura"
