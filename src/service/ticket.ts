@@ -23,3 +23,5 @@ class TickerService {
         return ticket
     }
 }
+
+export default TickerService
