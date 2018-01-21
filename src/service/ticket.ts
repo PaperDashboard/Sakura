@@ -20,5 +20,6 @@ class TickerService {
             title
         })
         await ticket.save()
+        return ticket
     }
 }

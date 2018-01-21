@@ -11,3 +11,5 @@ class TickerLabelModel {
         return mongoose.model('TicketLabels', TickerLabelModel.ticketLabelSchema);
     }
 }
+
+export default new  TickerLabelModel()

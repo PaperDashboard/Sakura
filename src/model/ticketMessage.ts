@@ -12,3 +12,5 @@ class TickerMessageModel {
         return mongoose.model('TickerMessage', TickerMessageModel.ticketMessageSchema);
     }
 }
+
+export default new TickerMessageModel()

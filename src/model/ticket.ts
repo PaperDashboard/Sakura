@@ -24,3 +24,5 @@ class TicketModel {
         return model
     }
 }
+
+export default new TicketModel()
