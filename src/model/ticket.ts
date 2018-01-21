@@ -11,6 +11,7 @@ class TicketModel {
 
     private static ticketSchema = new mongoose.Schema({
         creater: { type: mongoose.Schema.Types.ObjectId, required: true },
+        title: { type: String, required: true },
         tigger: Array,
         messages: Array,
         labels: Array,
